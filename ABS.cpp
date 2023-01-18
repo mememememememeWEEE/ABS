@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <vector>
 
+#include "basicCommonIntegralTypes.h"
+
 enum basicIntegralBinaryOperations {
 	ADDITION,
 	SUBTRACTION,
@@ -19,16 +21,14 @@ public:
 	friend class AST;
 };
 
-template<typename OperationType>
+template<basicCommonIntegralType elementType, basicIntegralBinaryOperations OperationType>
 class basicIntegralBinaryExpression : public ASTNode {
 protected:
 	basicIntegralBinaryOperations type;	
 	OperationType left_value;
 	OperationType right_value;
 public:
-	basicIntegralBinaryExpression(const basicIntegralBinaryOperations type) {
-		this.type = type;
-	}
+	basicIntegralBinaryExpression() {};
 };
 
 class AST final {
@@ -69,7 +69,7 @@ public:
 
 
 int main(void) {
-	basicIntegralBinaryExpression<int> is{ADDITION};
+	basicIntegralBinaryExpression<FLOAT32, ADDITION> is;
 	AST ast{{is}};
 	printf("UWU\n");
 	return 0;
