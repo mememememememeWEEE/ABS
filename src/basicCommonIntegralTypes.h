@@ -7,6 +7,8 @@ public:
 class INTEGER final : public basicCommonIntegralType {
 public:
     long long value;
+    INTEGER() {}
+
     INTEGER(const long long& value) {
         this->value = value;
     }
@@ -20,6 +22,8 @@ public:
 class FLOAT32 final : public basicCommonIntegralType {
 public:
     float value;
+    FLOAT32() {};
+
     FLOAT32(const float& value) {
         this->value = value;
     }
@@ -33,6 +37,8 @@ public:
 class FLOAT64 final : public basicCommonIntegralType {
 public:
     double value;
+    FLOAT64() {};
+
     FLOAT64(const double& value) {
         this->value = value;
     }

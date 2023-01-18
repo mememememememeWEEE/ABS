@@ -40,10 +40,10 @@ class AST final {
 protected:
 	std::vector<ASTNode> nodes;
 	
-	const static void printNode(const ASTNode& node, unsigned int indent) {
+	static void printNode(const ASTNode& node, const unsigned int& indent) {
 		if (node.children.size() == 0) {
 			printf("|");
-			for (int i = 0; i < indent; i++) printf("-");
+			for (unsigned int i = 0; i < indent; i++) printf("-");
 			printf("%s\n", node.name);
 		}
 	}
@@ -65,7 +65,6 @@ public:
 	}
 
 	void printSummary() {
-		int indent = 0;
 		for (const auto& node : this->nodes) {
 			_printSummary(node, 0);
 		}
