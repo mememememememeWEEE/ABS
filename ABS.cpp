@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <vector>
+#include <vector>																	
+#include <type_traits>
 
 #include "basicCommonIntegralTypes.h"
 
@@ -21,12 +22,16 @@ public:
 	friend class AST;
 };
 
-template<basicCommonIntegralType elementType, basicIntegralBinaryOperations OperationType>
+template<typename T>
+concept _bcit = requires(T a) {
+	{std::is_base_of_v<basicCommonIntegralType, T>};
+};
+template<_bcit elementType, basicIntegralBinaryOperations OperationType>
 class basicIntegralBinaryExpression : public ASTNode {
 protected:
 	basicIntegralBinaryOperations type;	
-	OperationType left_value;
-	OperationType right_value;
+	elementType left_value;
+	elementType right_value;
 public:
 	basicIntegralBinaryExpression() {};
 };
@@ -43,7 +48,7 @@ protected:
 		}
 	}
 
-	const void _printSummary(const ASTNode& node, unsigned int indent) {
+	void _printSummary(const ASTNode& node, unsigned int indent) const {
 		if (node.children.size() == 0) {
 			printNode(node, indent);
 			return;
@@ -71,7 +76,7 @@ public:
 int main(void) {
 	basicIntegralBinaryExpression<FLOAT32, ADDITION> is;
 	AST ast{{is}};
-	printf("UWU\n");
+	ast.printSummary();
 	return 0;
 }
 

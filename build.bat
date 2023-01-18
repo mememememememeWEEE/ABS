@@ -1,1 +1,1 @@
-gcc ABS.cpp -O2
+gcc ABS.cpp -O2 -std=c++2a -Wall -Wextra -fconcepts
