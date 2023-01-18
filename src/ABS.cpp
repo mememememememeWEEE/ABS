@@ -2,7 +2,7 @@
 #include <vector>																	
 #include <type_traits>
 
-#include "basicCommonIntegralTypes.h"
+#include "basicCommonIntegralTypes.hpp"
 
 enum basicIntegralBinaryOperations {
 	ADDITION,
@@ -20,6 +20,8 @@ protected:
 public:
 	const char* name;
 	friend class AST;
+
+	ASTNode() {this->children={};};
 };
 
 template<typename T>
