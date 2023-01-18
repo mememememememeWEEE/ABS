@@ -21,13 +21,18 @@ public:
 
 template<typename OperationType>
 class basicIntegralBinaryExpression : public ASTNode {
+protected:
 	basicIntegralBinaryOperations type;	
 	OperationType left_value;
 	OperationType right_value;
+public:
+	basicIntegralBinaryExpression(const basicIntegralBinaryOperations type) {
+		this.type = type;
+	}
 };
 
 class AST final {
-private:
+protected:
 	std::vector<ASTNode> nodes;
 	
 	const static void printNode(const ASTNode& node, unsigned int indent) {
@@ -38,17 +43,34 @@ private:
 		}
 	}
 
+	const void _printSummary(const ASTNode& node, unsigned int indent) {
+		if (node.children.size() == 0) {
+			printNode(node, indent);
+			return;
+		} else {
+			for (const auto& child : node.children) {
+				_printSummary(*child, indent+1);
+			}
+		}
+	}
+
 public:
-	void printSummary() const {
+	AST(std::vector<ASTNode> nodes) {
+		this->nodes = nodes;
+	}
+
+	void printSummary() {
 		int indent = 0;
-		for (auto node : nodes) {
-			printNode(node, 0);
+		for (const auto& node : this->nodes) {
+			_printSummary(node, 0);
 		}
 	}
 };
 
 
 int main(void) {
+	basicIntegralBinaryExpression<int> is{ADDITION};
+	AST ast{{is}};
 	printf("UWU\n");
 	return 0;
 }
