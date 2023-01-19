@@ -1,16 +1,28 @@
 #pragma once
+#include <unordered_map>
+#include <string>
 
 enum basicIntegralBinaryOperations {
-	ADDITION,
-	SUBTRACTION,
-	MULTIPLACATION,
-	DIVISION,
-	REMAINDER,
+	ADDITION = 0,
+	SUBTRACTION = 1, 
+	MULTIPLACATION = 2,
+	DIVISION = 3,
+	REMAINDER = 4,
 };
 
-class basicCommonIntegralType {
-public:
+static const std::unordered_map<basicIntegralBinaryOperations, std::string> bibo_map = {
+    {ADDITION, "ADDITION"},
+    {SUBTRACTION, "SUBTRACTION"},
+    {MULTIPLACATION, "MULTIPLACATION"},
+    {DIVISION, "DIVISION"},
+    {REMAINDER, "REMAINDER"},
 };
+
+std::string nameOfBasicIntegralBinaryOperations(basicIntegralBinaryOperations op) {
+    return bibo_map.at(op);
+}
+
+class basicCommonIntegralType {};
 
 class INTEGER final : public basicCommonIntegralType {
 public:

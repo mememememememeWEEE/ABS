@@ -2,6 +2,7 @@
 #include <type_traits>
 #include <vector>
 #include <cstdio>
+#include <string>
 
 #include "basicCommonIntegralTypes.hpp"
 
@@ -11,10 +12,11 @@ protected:
 	std::vector<ASTNode*> children;
 
 public:
-	const char* name;
+	std::string name;
 	friend class AST;
 
 	ASTNode() {this->children={};};
+	virtual std::string getName();
 };
 
 template<typename T>
@@ -31,21 +33,25 @@ public:
 	basicIntegralBinaryExpression() {
 		this->name = "BASIC_INTEGRAL_BINARY_OPERATION";
 	};
+
+	std::string getName() override {
+		return this->name + nameOfBasicIntegralBinaryOperations(OperationType);
+	}
 };
 
 class AST final {
 protected:
 	std::vector<ASTNode> nodes;
 	
-	static void printNode(const ASTNode& node, const unsigned int& indent) {
+	static void printNode(ASTNode& node, const unsigned int& indent) {
 		if (node.children.size() == 0) {
 			printf("|->|");
 			for (unsigned int i = 0; i < indent; i++) printf("->");
-			printf("%s\n", node.name);
+			printf("%s\n", node.getName());
 		}
 	}
 
-	void _printSummary(const ASTNode& node, unsigned int indent) const {
+	void _printSummary(ASTNode& node, unsigned int indent) const {
 		if (node.children.size() == 0) {
 			printNode(node, indent);
 			return;
@@ -65,7 +71,7 @@ public:
 
 	void printSummary() {
 		printf("[AST-%s]:\n", this->name);
-		for (const auto& node : this->nodes) {
+		for (auto& node : this->nodes) {
 			_printSummary(node, 0);
 		}
 	}
