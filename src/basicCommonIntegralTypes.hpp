@@ -1,5 +1,13 @@
 #pragma once
 
+enum basicIntegralBinaryOperations {
+	ADDITION,
+	SUBTRACTION,
+	MULTIPLACATION,
+	DIVISION,
+	REMAINDER,
+};
+
 class basicCommonIntegralType {
 public:
 };
