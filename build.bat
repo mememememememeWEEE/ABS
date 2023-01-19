@@ -1,1 +1,1 @@
-g++ ./src/ABS.cpp -O2 -std=c++2a -Wall -Wextra -fconcepts
+g++ ./src/ABS.cpp -O2 -std=c++2a -fconcepts -Wall -Wextra 
