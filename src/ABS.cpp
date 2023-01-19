@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #include <vector>																	
 #include <type_traits>
 
@@ -11,6 +11,7 @@ int main(void) {
 	AST ast{{is, os}};
 	ast.name = "Is";
 	ast.printSummary();
+	std::cout << nameOfBasicIntegralBinaryOperations(ADDITION);
 	return 0;
 }
 

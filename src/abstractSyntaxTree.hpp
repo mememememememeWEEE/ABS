@@ -2,6 +2,7 @@
 #include <type_traits>
 #include <vector>
 #include <cstdio>
+#include <iostream>
 #include <string>
 
 #include "basicCommonIntegralTypes.hpp"
@@ -16,7 +17,7 @@ public:
 	friend class AST;
 
 	ASTNode() {this->children={};};
-	virtual std::string getName();
+	virtual std::string getName() {return this->name;};
 };
 
 template<typename T>
@@ -34,8 +35,9 @@ public:
 		this->name = "BASIC_INTEGRAL_BINARY_OPERATION";
 	};
 
+//doesn't override
 	std::string getName() override {
-		return this->name + nameOfBasicIntegralBinaryOperations(OperationType);
+		return this->name + " " + nameOfBasicIntegralBinaryOperations(OperationType);
 	}
 };
 
@@ -45,9 +47,9 @@ protected:
 	
 	static void printNode(ASTNode& node, const unsigned int& indent) {
 		if (node.children.size() == 0) {
-			printf("|->|");
-			for (unsigned int i = 0; i < indent; i++) printf("->");
-			printf("%s\n", node.getName());
+			std::cout << "|->|";
+			for (unsigned int i = 0; i < indent; i++) std::cout << "->";
+			std::cout << node.getName() << '\n';
 		}
 	}
 
@@ -70,7 +72,7 @@ public:
 	}
 
 	void printSummary() {
-		printf("[AST-%s]:\n", this->name);
+		std::cout << "[AST-" << this->name << "]:\n";
 		for (auto& node : this->nodes) {
 			_printSummary(node, 0);
 		}

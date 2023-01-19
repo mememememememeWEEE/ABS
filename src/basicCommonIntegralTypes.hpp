@@ -3,11 +3,12 @@
 #include <string>
 
 enum basicIntegralBinaryOperations {
-	ADDITION = 0,
-	SUBTRACTION = 1, 
-	MULTIPLACATION = 2,
-	DIVISION = 3,
-	REMAINDER = 4,
+    REAL = 0,
+	ADDITION = 1,
+	SUBTRACTION = 2, 
+	MULTIPLACATION = 3,
+	DIVISION = 4,
+	REMAINDER = 5,
 };
 
 static const std::unordered_map<basicIntegralBinaryOperations, std::string> bibo_map = {
