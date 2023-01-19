@@ -1,11 +1,5 @@
 #include "Expression.hpp"
-
-enum EIntegralTypes {
-    INTEGRAL_REAL,
-    INTEGRAL_INTEGER,
-    INTEGRAL_FLOAT32,
-    INTEGRAL_FLOAT64,
-};
+#include "BasicTypes.hpp"
 
 enum EIntegralOperatorTypes {
     INTEGRAL_EXPRESSION_TYPE_ADD,
@@ -16,6 +10,7 @@ enum EIntegralOperatorTypes {
     INTEGRAL_EXPRESSION_TYPE_POW,
 };
 
-class BasicCommonIntegralExpression : public Expression<EIntegralTypes, EIntegralOperatorTypes> {
-
+class BasicCommonIntegralExpression : public Expression<IntegralTypes, EIntegralOperatorTypes> {
+protected:
+public:
 };

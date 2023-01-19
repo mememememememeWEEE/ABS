@@ -1,18 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class ASTNode {
-protected:
-	ASTNode* parent;
-	std::vector<ASTNode*> children;
-
-public:
-	std::string name;
-	friend class AST;
-
-	ASTNode() {this->children={};};
-	virtual std::string getName() {return this->name;};
-};
+#include "ASTNode.hpp"
 
 class AST final {
 protected:
