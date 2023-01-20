@@ -11,8 +11,8 @@ enum EIntegralOperatorTypes {
     INTEGRAL_EXPRESSION_TYPE_POW,
 };
 
-template<typename T>
-concept _bcie = std::is_base_of_v<INTEGRAL, T>;
+template<class T>
+concept _bcie = requires(const T& t) {[]<class U>(const INTEGRAL<U>&){}(t);};
 template<_bcie T>
 class BasicCommonIntegralExpression : public Expression<T, EIntegralOperatorTypes> {
 public:

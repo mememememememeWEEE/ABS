@@ -10,9 +10,8 @@ enum IntegralTypes {
 
 class basicType {};
 
-class StaticType {};
 template<typename T>
-class tStaticType : public basicType {
+class StaticType : public basicType {
 	bool initialized = false;
 	T value;
 };
@@ -22,11 +21,10 @@ class dynamicType : public basicType {
 	std::any value;
 };
 
-class INTEGRAL {};
 template<typename T> 
-class tINTEGRAL : tStaticType<T> {};
+class INTEGRAL : StaticType<T> {};
 
-class INTEGRAL_INTEGER : public tINTEGRAL<int64_t>, public INTEGRAL {};
-class INTEGRAL_FLOAT32 : public tINTEGRAL<float>, public INTEGRAL {};
-class INTEGRAL_FLOAT64 : public tINTEGRAL<double>, public INTEGRAL {};
+class INTEGRAL_INTEGER : public INTEGRAL<int64_t> {};
+class INTEGRAL_FLOAT32 : public INTEGRAL<float> {};
+class INTEGRAL_FLOAT64 : public INTEGRAL<double> {};
 
