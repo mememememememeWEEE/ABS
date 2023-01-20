@@ -1,3 +1,4 @@
+#include <type_traits>
 #include "Expression.hpp"
 #include "BasicTypes.hpp"
 
@@ -10,7 +11,9 @@ enum EIntegralOperatorTypes {
     INTEGRAL_EXPRESSION_TYPE_POW,
 };
 
-class BasicCommonIntegralExpression : public Expression<IntegralTypes, EIntegralOperatorTypes> {
-protected:
+template<typename T>
+concept _bcie = std::is_base_of_v<INTEGRAL, T>;
+template<_bcie T>
+class BasicCommonIntegralExpression : public Expression<T, EIntegralOperatorTypes> {
 public:
 };
