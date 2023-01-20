@@ -1,1 +1,1 @@
-g++ ./src/ABS.cpp -O2 -std=c++2a -fconcepts -Wall -Wextra 
+g++ ./src/ABS.cpp -O2 -std=c++2a -fconcepts -Wall -Wextra -pedantic -Wfatal-errors -Wshadow -Wconversion -g -o abs 

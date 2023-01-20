@@ -1,7 +1,7 @@
 # Simple **ABS**tract Syntax Tree
 
 Written in an OOP (Object Oriented Pattern) way in C++ (C++20).
-Bugs may exist in the main branch. Any friendly commits are appreciated. 
+Bugs may exist in the main branch. Any friendly commits are appreciated.
 
 
 ### Regarding the LICENSE
